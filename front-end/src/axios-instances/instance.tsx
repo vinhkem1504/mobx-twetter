@@ -64,7 +64,6 @@ export const createAxiosInstance = (options: axiosInstanceOptions): AxiosInstanc
                         }
                         return instance(originalRequest)
                     }
-                    
                     return instance(originalRequest)
                 } catch (error) {
                     return Promise.reject(error)
@@ -73,6 +72,5 @@ export const createAxiosInstance = (options: axiosInstanceOptions): AxiosInstanc
             return Promise.reject(error)
         }
     )
-    
     return instance
 }

@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken"
 function isExpiredToken(token){
     const tokenPayload = JSON.parse(atob(token.split(".")[1]))
     const currentTime = Date.now() / 1000;
-    return tokenPayload.exp > currentTime
+    // console.log("exp", tokenPayload.exp, "current", currentTime)
+    return tokenPayload.exp < currentTime
 }
 
 export const verifyToken = (req, res, next) => {
@@ -13,13 +14,10 @@ export const verifyToken = (req, res, next) => {
     //Get token
     const accessToken = Authorization.split(' ')[1]
 
-    // console.log("run here",Authorization.split(' ')[1])
-    // console.log("accessToken",accessToken)
-    
-    //Verify token
-    const {userID} = jwt.verify(accessToken, process.env.APP_SECRET)
+    console.log("run here",Authorization.split(' ')[1])
+    console.log("expried",isExpiredToken(accessToken))
 
-    if(!Authorization || !isExpiredToken(accessToken)){
+    if(!Authorization || isExpiredToken(accessToken)){
         // Error:  undefined Authorization
         console.log("ERROR verifyTOken")
         const error = new Error("Unauthorized !")
@@ -27,7 +25,8 @@ export const verifyToken = (req, res, next) => {
         return next(error)
     }
 
-    
+    //Verify token
+    const {userID} = jwt.verify(accessToken, process.env.APP_SECRET)
 
     //Assign req
     req.user = {userID}

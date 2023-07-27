@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 
 function generateAccessToken(userId){
-    return jwt.sign({userID: userId}, process.env.APP_SECRET, {expiresIn: "5m"})
+    return jwt.sign({userID: userId}, process.env.APP_SECRET, {expiresIn: "5s"})
 }
 
 function generateRefreshToken(userId){
