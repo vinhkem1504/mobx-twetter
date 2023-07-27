@@ -14,12 +14,12 @@ export const verifyToken = (req, res, next) => {
     //Get token
     const accessToken = Authorization.split(' ')[1]
 
-    console.log("run here",Authorization.split(' ')[1])
-    console.log("expried",isExpiredToken(accessToken))
+    // console.log("run here",Authorization.split(' ')[1])
+    // console.log("expried",isExpiredToken(accessToken))
 
     if(!Authorization || isExpiredToken(accessToken)){
         // Error:  undefined Authorization
-        console.log("ERROR verifyTOken")
+        console.log("ERROR verifyToken")
         const error = new Error("Unauthorized !")
         error.statusCode = 401;
         return next(error)
