@@ -18,9 +18,8 @@ const Main = observer(()=>{
       const res = await instance.post('/',{content: contentText})
       // console.log("instance-test", res)
 
-
       const userName = user.name
-
+      console.log(user)
       if(userName){
         //console.log("-------->HERE")
         const newPost: PostStore = {
@@ -33,7 +32,7 @@ const Main = observer(()=>{
           createdAt: res.data.data.post.createdAt,
           isEditable: true
         }
-        //console.log("new Post", newPost)
+        console.log("new Post", newPost)
         posts.createNewPost(newPost)
       }
     } catch (error) {

@@ -22,8 +22,8 @@ export const checkCurrentUser = (req, res, next) => {
             next()
         }
         catch(err){
-            req.user = null;
-            next()
+            err.statusCode = 401;
+            next(err)
         }
 
     }

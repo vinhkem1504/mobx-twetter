@@ -26,7 +26,7 @@ function App() {
       if(response.data.data.user && userId){
         const userName = response.data.data.user.userName
         user.setCurrentUser(new UserStore(userId, userName))
-        // console.log("crurrent", user.currentUser)
+        console.log("crurrent", user.currentUser)
       }
     } catch (error) {
       console.log(error)

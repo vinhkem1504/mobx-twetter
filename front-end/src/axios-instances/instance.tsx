@@ -16,7 +16,7 @@ async function refreshAccessToken(refreshToken: string){
     }
 
     const res = await axios(options)
-    console.log("new token", res)
+    // console.log("new token", res)
     localStorage.setItem('accessToken', res.data.data.newAccessToken)
     localStorage.setItem('refreshToken', res.data.data.newRefreshToken)
     return res.data.data.newAccessToken
@@ -35,7 +35,7 @@ export const createAxiosInstance = (options: axiosInstanceOptions): AxiosInstanc
     instance.interceptors.request.use(
         (config) => {
             const accessToken = localStorage.getItem("accessToken")
-            console.log("ACCESS TOKEN", accessToken)
+            // console.log("ACCESS TOKEN", accessToken)
             if(accessToken){
                 config.headers.Authorization = `Bearer ${accessToken}`
             }

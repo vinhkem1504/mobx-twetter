@@ -34,7 +34,7 @@ const PostList = observer(()=>{
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [posts, userId]);
 
   useEffect(()=>{
     getAllPosts()
