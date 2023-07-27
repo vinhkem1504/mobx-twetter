@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 
 function generateAccessToken(userId){
-    return jwt.sign({userID: userId}, process.env.APP_SECRET, {expiresIn: "5s"})
+    return jwt.sign({userID: userId}, process.env.APP_SECRET, {expiresIn: "5m"})
 }
 
 function generateRefreshToken(userId){
@@ -83,8 +83,8 @@ export async function getCurrentUser(req, res, next){
 
 export async function refreshAccessToken(req, res, next){
     try {
-        const refreshToken = req.header("Refresh-Token")
-        // console.log("refreshToken", refreshToken)
+        const refreshToken = req.body.refreshToken
+        console.log("refreshToken", refreshToken)
         if(!refreshToken){
             // Error:  undefined Authorization
             const error = new Error("Unauthorized !")

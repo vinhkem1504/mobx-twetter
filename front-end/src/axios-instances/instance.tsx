@@ -8,10 +8,10 @@ export interface axiosInstanceOptions {
 
 async function refreshAccessToken(refreshToken: string){
     const options = {
-        method: "get",
+        method: "post",
         url: "/api/v1/auth/refresh",
-        headers: {
-            "Refresh-Token": `${refreshToken}`
+        data: {
+            refreshToken: refreshToken
         }
     }
 
